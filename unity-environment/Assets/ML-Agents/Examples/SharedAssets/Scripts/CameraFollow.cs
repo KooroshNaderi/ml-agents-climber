@@ -1,0 +1,33 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace MLAgents
+{
+
+    public class CameraFollow : MonoBehaviour
+    {
+
+        public Transform target;
+        Vector3 offset;
+        public bool flagFollowAgent = true;
+        // Use this for initialization
+        void Start()
+        {
+            if (flagFollowAgent)
+                offset = gameObject.transform.position - target.position;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (!flagFollowAgent)
+                return;
+
+            // gameObject.transform.position = target.position + offset;
+            Vector3 newPosition = new Vector3(target.position.x + offset.x, transform.position.y,
+                target.position.z + offset.z);
+            gameObject.transform.position = newPosition;
+        }
+    }
+}
